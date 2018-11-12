@@ -1,107 +1,46 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>My Google Map</title>
-	<style>
-		#map{
-			height:400px;
-			width:100%;
-		}
-	</style>
-</head>
-<body>
-	<h1>The Test Map (NTU)</h1>
-	<div id="map"></div>
-	<script>
-		function initMap(){
-			var options = {
-				zoom:8,
-				center:{lat:1.3483, lng:103.6831}
-			}
-
-			var map = new google..maps.Map(document.getElementById('map'), options);
-		}
-	</script>
-	<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_kaLbzcZMUgIPoLIB4Fd0Y9FuorUUfk4&callback=initMap">
-	</script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 400px;
-        width: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- <div id="map"></div>
-    <script>
-      // var map
-      function initMap() {
-      	var options = {
-				zoom:16,
-				center:{lat:1.3483, lng:103.6831}
-			}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        var map = new google.maps.Map(document.getElementById('map'), options);
+  <title>Push Codelab</title>
 
-        var marker = new google.maps.Marker({
-        	position:{lat:1.349043, lng:103.678520},
-        	map:map,
-        	icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_kaLbzcZMUgIPoLIB4Fd0Y9FuorUUfk4&callback=initMap"
-    async defer></script> -->
-    <p><button onclick="geoFindMe()">Show my location</button></p>
-	<div id="out"></div>
-    <script>
-    	function geoFindMe() {
-		var output = document.getElementById("out");
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <link rel="stylesheet" href="styles/index.css">
+</head>
 
-		if (!navigator.geolocation){
-		output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-		return;
-		}
+<body>
 
-		function success(position) {
-		var latitude  = position.coords.latitude;
-		var longitude = position.coords.longitude;
+  <header>
+    <h1>Push Codelab</h1>
+  </header>
 
-		output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+  <main>
+    <p>Welcome to the push messaging codelab. The button below needs to be
+    fixed to support subscribing to push.</p>
+    <p>
+      <button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Enable Push Messaging
+      </button>
+    </p>
+    <section class="subscription-details js-subscription-details is-invisible">
+      <p>Once you've subscribed your user, you'd send their subscription to your
+      server to store in a database so that when you want to send a message
+      you can lookup the subscription and send a message to it.</p>
+      <p>To simplify things for this code lab copy the following details
+      into the <a href="https://web-push-codelab.glitch.me//">Push Companion
+      Site</a> and it'll send a push message for you, using the application
+      server keys on the site - so make sure they match.</p>
+      <pre><code class="js-subscription-json"></code></pre>
+    </section>
+  </main>
 
-		var img = new Image();
-		img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+  <script src="scripts/main.js"></script>
 
-		output.appendChild(img);
-		}
-
-		function error() {
-		output.innerHTML = "Unable to retrieve your location";
-		}
-
-		output.innerHTML = "<p>Locating…</p>";
-
-		navigator.geolocation.getCurrentPosition(success, error);
-		window.open("https://maps.google.com/maps?daddr=<latitude>,<longitude>&amp;ll=");
-		}
-    </script>
-  </body>
+  <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
 </html>
